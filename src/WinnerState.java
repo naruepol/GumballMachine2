@@ -33,8 +33,13 @@ public class WinnerState implements State {
 		if(gumballMachine.getCount() == 0){
 			gumballMachine.setState(gumballMachine.getSoldOutState());
 		}else {
-			System.out.println("Oops, out of gumballs!");
-			gumballMachine.setState(gumballMachine.getSoldOutState());
+			gumballMachine.releaseBall();
+			if(gumballMachine.getCount()> 0){
+				gumballMachine.setState(gumballMachine.getNoQuarterState());
+			}else{
+				System.out.println("Oops, out of gumballs!");
+				gumballMachine.setState(gumballMachine.getSoldOutState());
+			}
 		}
 	}
 
